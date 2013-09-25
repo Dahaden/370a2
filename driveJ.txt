@@ -1,34 +1,110 @@
 3
 file creation volume
 100
-xxxx---------------------------------
+xxxxxxxxxxxxxxxxxxxxxxx--------------
 **  0 **
 --------------------------------------------------------------x
 
 **  1 **
 99                                                              
 **  2 **
-                                                                
+  5
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+
 **  3 **
-                                                                
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+
 **  4 **
-                                                                
+fileAdife
+0
+4
+                                                  
 **  5 **
-                                                                
+  8
+  9
+ 10
+ 11
+ 12
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+
 **  6 **
-                                                                
+fileA
+320
+6
+fileB
+516
+13
+dir/
+3
+
+                               
 **  7 **
-                                                                
+Hello from fileAHello from fileAHello from fileAHello from fileA
 **  8 **
-                                                                
+Hello from fileAHello from fileAHello from fileAHello from fileA
 **  9 **
-                                                                
+Hello from fileAHello from fileAHello from fileAHello from fileA
 ** 10 **
-                                                                
+Hello from fileAHello from fileAHello from fileAHello from fileA
 ** 11 **
-                                                                
+Hello from fileAHello from fileAHello from fileAHello from fileA
 ** 12 **
-                                                                
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+
 ** 13 **
                                                                 
 ** 14 **
@@ -44,9 +120,9 @@ xxxx---------------------------------
 ** 19 **
                                                                 
 ** 20 **
-                                                                
+                                                    Welcome to f
 ** 21 **
-                                                                
+ileB                                                            
 ** 22 **
                                                                 
 ** 23 **
@@ -200,7 +276,7 @@ xxxx---------------------------------
 ** 97 **
                                                                 
 ** 98 **
-  0
+  7
   0
   0
   0

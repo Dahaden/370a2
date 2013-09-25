@@ -168,7 +168,7 @@ volume.unmount()
 '''
 volume = Volume.format(Drive.format('driveJ.txt', 100), b'file creation volume')
 #with self.assertRaises(ValueError):#
-volume.open(b'dir/fileAdife')	# incase we ever implement subdirectories
+volume.open(b'dir/fileA')	# incase we ever implement subdirectories
 #		with self.assertRaises(ValueError):
 #			volume.open(b'fileA\n')
 file = volume.open(b'fileA')
