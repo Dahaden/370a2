@@ -1,0 +1,56 @@
+1
+file read volume
+8
+xxxxx--x
+7
+                                
+**  0 **
+  3
+  4
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+
+**  1 **
+fileA
+77
+1
+                                                     
+**  2 **
+A different fileAAaarghAaarghAaarghAaarghAaarghAaarghAaarghAaarg
+**  3 **
+hAaarghAaargh                                                   
+**  4 **
+                                                                
+**  5 **
+                                                                
+**  6 **
+  2
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+
+**  7 **

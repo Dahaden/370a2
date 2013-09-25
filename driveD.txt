@@ -1,0 +1,74 @@
+1
+file creation volume
+8
+xxxxxxxx
+7                             
+**  0
+  3
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+
+**  1
+fileA
+32
+1
+fileB
+66
+4
+                                          
+**  2
+Hello from fileAHello from fileA                                
+**  3
+  5
+  6
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+
+**  4
+                                                  Welcome to fil
+**  5
+eB                                                              
+**  6
+  2
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+
+**  7
