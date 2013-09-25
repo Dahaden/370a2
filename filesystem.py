@@ -232,7 +232,8 @@ class Volume(object):
 		'''
 		if not self.root:
 			self.create_root()
-		filee = self.root.get_file(filename)
+		name_list = filename.strip(b'/')
+		filee = self.root.get_file(name_list)
 		return filee
 
 	def part_meta_data(self):
@@ -284,15 +285,26 @@ class Volume(object):
 class Directory(object):
 	
 	def __init__(self, name, pos, vol):
-		#Library.check_name()        #Can be used in the future with more Directories?
+		pdb.set_trace()
+		Library.check_name_no_length(name)        #Can be used in the future with more Directories?
 		self.name = name
 		self.file = []
 		self.volume = vol
 		self.local = Location(pos, vol)
 		self.local.write()
+		self.dirs = []
+	
+	def get_name(self):
+		return self.name
 
-
-	def get_file(self, name):
+	def get_file(self, name_list):
+		if len(name_list) > 1:
+			for dirr in self.dirs:
+				if dirr.get_name() == name_list[0]:
+					return dirr.get_file(name_list.pop(0))
+			self.dirs.append(Directory(name_list[0], self.volume.request_block(), self.volume))
+			return self.dirs[len(self.dirs)-1].get_file(name_list.pop(0))
+		name = name_list[0]
 		for item in self.file:
 			if item.name() == name:
 				return item
@@ -461,8 +473,11 @@ class Library(object):
 
 	@staticmethod
 	def check_name_no_length(name):
-		if name.rfind(b'\n') != -1:
+		try:		
+			i = name.index(b'\n')
 			raise ValueError('Name must not include \\n')
+		except:
+			pass
 		
 		if not name.strip():
 			raise ValueError('Name Must contain letters or numbers')
