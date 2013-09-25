@@ -1,14 +1,14 @@
 3
 file creation volume
 100
-xxxxxxxxxxxxxxxxxxxxxxx--------------
+xxxxxxxxxxxxxxxxxxxxxxxx-------------
 **  0 **
 --------------------------------------------------------------x
 
 **  1 **
 99                                                              
 **  2 **
-  5
+  0
   0
   0
   0
@@ -26,7 +26,7 @@ xxxxxxxxxxxxxxxxxxxxxxx--------------
   0
 
 **  3 **
-  0
+ 23
   0
   0
   0
@@ -45,15 +45,15 @@ xxxxxxxxxxxxxxxxxxxxxxx--------------
 
 **  4 **
 fileAdife
-0
+12
 4
-                                                  
+                                                 
 **  5 **
-  8
-  9
- 10
- 11
- 12
+  0
+  0
+  0
+  0
+  0
   0
   0
   0
@@ -88,15 +88,15 @@ Hello from fileAHello from fileAHello from fileAHello from fileA
 ** 11 **
 Hello from fileAHello from fileAHello from fileAHello from fileA
 ** 12 **
- 14
- 15
- 16
- 17
- 18
- 19
- 20
- 21
- 22
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
+  0
   0
   0
   0
@@ -124,7 +124,7 @@ Hello from fileAHello from fileAHello from fileAHello from fileA
 ** 21 **
 ileB                                                            
 ** 22 **
-                                                                
+Good morning                                                    
 ** 23 **
                                                                 
 ** 24 **
@@ -276,7 +276,7 @@ ileB
 ** 97 **
                                                                 
 ** 98 **
-  7
+  0
   0
   0
   0

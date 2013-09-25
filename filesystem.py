@@ -231,7 +231,7 @@ class Volume(object):
 		If the file does not exist it is created.
 		Returns an A2File object.
 		'''
-		pdb.set_trace()
+		#pdb.set_trace()
 		if not self.root:
 			self.create_root()
 		name_list = filename.split(b'/')
@@ -304,7 +304,8 @@ class Directory(object):
 		if len(name_list) > 1:
 			for dirr in self.dirs:
 				if dirr.get_name() == name_list[0]:
-					return dirr.get_file(name_list.remove(0))
+					name_list.remove(name_list[0])
+					return dirr.get_file(name_list)
 			#pdb.set_trace()
 			self.dirs.append(Directory(name_list.pop(0), self.volume.request_block(), self.volume))
 			return self.dirs[len(self.dirs)-1].get_file(name_list)
@@ -357,6 +358,7 @@ class Directory(object):
 	
 	@staticmethod
 	def import_files(name, pos, volume):
+		print('Importing Directory: ' + name.decode())
 		location = Location.create_from_drive(pos, volume)
 		directory = Directory(name, pos, volume)
 		directory.local = location
@@ -367,8 +369,18 @@ class Directory(object):
 			return directory
 		#print(data_list)
 		for i in range(0, len(data_list), 3):
-			directory.file.append(A2File.read_in(data_list[i], directory, int(data_list[i+2]), int(data_list[i+1])))
+			if Directory.is_dir(data_list[i]):
+				directory.dirs.append(Directory.import_files(data_list[i][:len(data_list[i])-1], int(data_list[i+1]), volume))
+			else:
+				directory.file.append(A2File.read_in(data_list[i], directory, int(data_list[i+2]), int(data_list[i+1])))
 		return directory
+	
+	@staticmethod
+	def is_dir(name):
+		name = name.decode()
+		if name[len(name)-1] == '/':
+			return True
+		return False
 
 ###################### LOCATION CLASS ######################
 

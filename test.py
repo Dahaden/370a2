@@ -2,6 +2,7 @@
 from filesystem import Volume
 from drive import Drive
 from math import floor
+import pdb
 
 '''
 string = '  he  llo    '
@@ -166,7 +167,8 @@ file99 = volume.open(b'file99')
 #self.assertEqual(b'9a', file99.read(file99.size() - 2, 2))
 volume.unmount()
 '''
-volume = Volume.format(Drive.format('driveJ.txt', 100), b'file creation volume')
+drive_name = 'driveJ.txt'
+volume = Volume.format(Drive.format(drive_name, 100), b'file creation volume')
 #with self.assertRaises(ValueError):#
 volume.open(b'dir/fileAdife')	# incase we ever implement subdirectories
 #		with self.assertRaises(ValueError):
@@ -183,4 +185,8 @@ data = b'Welcome to fileB'
 file.write(500, data)
 #self.assertEqual(500 + len(data), file.size())
 volume.unmount()
-
+volume = Volume.mount(drive_name)
+#pdb.set_trace()
+file = volume.open(b'dir/fileAdife')
+file.write(0, b'Good morning')
+volume.unmount()
