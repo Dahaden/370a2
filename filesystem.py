@@ -31,6 +31,7 @@ class A2File(object):
 		self.data = b''
 		self.parent = parent
 		self.local = None
+		self._lock = threading.Lock()
 	
 	@staticmethod
 	def read_in(name, parent, block_num, size):
@@ -66,14 +67,18 @@ class A2File(object):
 		If location is greater than the size of the file the file is extended
 		to the location with spaces. 
 		'''
-		if location > len(self.data):
-			self.data += b' ' * (location - len(self.data))
-		self.data = self.data[:location] + data + self.data[location:]
-		to_write = Library.prepare_data(self.data)
-		while len(to_write) > self.local.num_refs():
-			self.local.add_reference(self.parent.get_volume().request_block())
-		Library.write(to_write, self.local.get_list(), self.parent.get_volume().get_drive())
-		self.parent.write()				
+		self._lock.acquire()
+		try:
+			if location > len(self.data):
+				self.data += b' ' * (location - len(self.data))
+			self.data = self.data[:location] + data + self.data[location + len(data):]         #Overwrites data if space is allocated
+			to_write = Library.prepare_data(self.data)
+			while len(to_write) > self.local.total_refs():
+				self.local.add_reference(self.parent.get_volume().request_block())
+			Library.write(to_write, self.local.get_list(), self.parent.get_volume().get_drive())	
+			self.parent.write()
+		finally:
+			self._lock.release()			
 	
 	def read(self, location, amount):
 		'''
@@ -155,9 +160,10 @@ class Volume(object):
 		Returns the number of blocks at the beginning of the drive which are used to hold
 		the volume information.
 		'''
+		#pdb.set_trace()
 		data = self.part_meta_data()
 		length = len(data) + 1        #Added One for '\n' char
-		blocks = floor(length / Drive.BLK_SIZE)
+		blocks = int(floor(length / Drive.BLK_SIZE))
 		while (len(str(blocks)) + length)/Drive.BLK_SIZE >= blocks:
 			blocks += 1
 		return blocks
@@ -314,8 +320,7 @@ class Directory(object):
 			if item.name() == name:
 				return item
 		filee = A2File.new_file(name, self)
-		self.file.append(filee)
-		self.write()
+		self.add_file(filee)
 		return filee
 	
 	def add_file(self, filee):
@@ -362,6 +367,7 @@ class Directory(object):
 		location = Location.create_from_drive(pos, volume)
 		directory = Directory(name, pos, volume)
 		directory.local = location
+		directory.local.write()
 		data = location.get_referenced_data()
 
 		data_list = data.split(b'\n')
@@ -370,6 +376,7 @@ class Directory(object):
 		#print(data_list)
 		for i in range(0, len(data_list), 3):
 			if Directory.is_dir(data_list[i]):
+				#pdb.set_trace()
 				directory.dirs.append(Directory.import_files(data_list[i][:len(data_list[i])-1], int(data_list[i+1]), volume))
 			else:
 				directory.file.append(A2File.read_in(data_list[i], directory, int(data_list[i+2]), int(data_list[i+1])))

@@ -185,8 +185,15 @@ data = b'Welcome to fileB'
 file.write(500, data)
 #self.assertEqual(500 + len(data), file.size())
 volume.unmount()
+
 volume = Volume.mount(drive_name)
 #pdb.set_trace()
 file = volume.open(b'dir/fileAdife')
 file.write(0, b'Good morning')
 volume.unmount()
+
+volume = Volume.mount(drive_name)
+file = volume.open(b'dir/fileAdife')
+print(file.read(0, 5))
+volume.unmount()
+
